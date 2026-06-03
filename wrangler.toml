@@ -1,4 +1,4 @@
-name = "insight-forge"
+name = "insightforge"
 compatibility_date = "2024-05-01"
 main = "src/index.js"
 
