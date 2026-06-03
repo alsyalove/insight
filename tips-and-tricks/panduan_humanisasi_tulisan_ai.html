@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); color: var(--color-text-primary); background: transparent; }
+
+.nav { display: flex; gap: 6px; flex-wrap: wrap; padding: 1rem 0 1.5rem; border-bottom: 0.5px solid var(--color-border-tertiary); margin-bottom: 1.5rem; }
+.nav button { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-secondary); color: var(--color-text-secondary); cursor: pointer; transition: all 0.15s; }
+.nav button.active { background: var(--color-background-primary); color: var(--color-text-primary); border-color: var(--color-border-primary); font-weight: 500; }
+.nav button:hover { color: var(--color-text-primary); }
+
+.section { display: none; }
+.section.active { display: block; }
+
+h2 { font-size: 18px; font-weight: 500; margin-bottom: 0.5rem; }
+h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.5rem; color: var(--color-text-primary); }
+p { font-size: 14px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 0.75rem; }
+
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+
+.badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 20px; margin-bottom: 0.5rem; }
+.badge-blue { background: #E6F1FB; color: #0C447C; }
+.badge-amber { background: #FAEEDA; color: #633806; }
+.badge-red { background: #FCEBEB; color: #791F1F; }
+.badge-green { background: #EAF3DE; color: #27500A; }
+.badge-purple { background: #EEEDFE; color: #3C3489; }
+.badge-teal { background: #E1F5EE; color: #085041; }
+
+.tool-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.tool-row:last-child { border-bottom: none; }
+.tool-icon { width: 36px; height: 36px; border-radius: var(--border-radius-md); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.tool-info { flex: 1; }
+.tool-info strong { font-size: 13px; font-weight: 500; display: block; margin-bottom: 2px; }
+.tool-info small { font-size: 12px; color: var(--color-text-secondary); }
+
+.level-bar { display: flex; gap: 4px; margin-bottom: 4px; }
+.level-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-border-secondary); }
+.level-dot.filled { background: #1D9E75; }
+
+.ai-word { display: inline-block; background: #FCEBEB; color: #791F1F; border-radius: 4px; padding: 2px 7px; font-size: 12px; margin: 3px; font-family: var(--font-mono); }
+
+.compare-box { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+.compare-col { border-radius: var(--border-radius-md); padding: 0.875rem 1rem; }
+.col-ai { background: #FCEBEB; border: 0.5px solid #F09595; }
+.col-human { background: #EAF3DE; border: 0.5px solid #97C459; }
+.col-label { font-size: 11px; font-weight: 500; margin-bottom: 0.5rem; }
+.col-ai .col-label { color: #791F1F; }
+.col-human .col-label { color: #27500A; }
+.compare-col p { font-size: 13px; line-height: 1.6; color: var(--color-text-primary); margin: 0; }
+
+.checklist { list-style: none; }
+.checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; cursor: pointer; }
+.checklist li:last-child { border-bottom: none; }
+.check-box { width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--color-border-secondary); flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: all 0.15s; }
+.check-box.checked { background: #1D9E75; border-color: #1D9E75; color: white; }
+.check-text.checked { text-decoration: line-through; color: var(--color-text-secondary); }
+.progress-bar { height: 6px; background: var(--color-border-tertiary); border-radius: 3px; margin-bottom: 0.5rem; overflow: hidden; }
+.progress-fill { height: 100%; background: #1D9E75; border-radius: 3px; transition: width 0.3s; }
+.progress-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+
+.ethics-block { border-left: 3px solid #1D9E75; padding-left: 1rem; margin-bottom: 1rem; }
+.ethics-block.warn { border-color: #EF9F27; }
+.ethics-block.danger { border-color: #E24B4A; }
+
+.tab-lang { display: flex; gap: 8px; margin-bottom: 1rem; }
+.tab-lang button { font-size: 12px; padding: 4px 12px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); background: transparent; color: var(--color-text-secondary); cursor: pointer; }
+.tab-lang button.active { background: var(--color-background-secondary); color: var(--color-text-primary); font-weight: 500; }
+
+.workflow-step { display: flex; gap: 12px; margin-bottom: 0.75rem; align-items: flex-start; }
+.step-num { width: 26px; height: 26px; border-radius: 50%; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-secondary); font-size: 12px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--color-text-secondary); }
+.step-content strong { font-size: 13px; font-weight: 500; display: block; }
+.step-content span { font-size: 12px; color: var(--color-text-secondary); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+</style>
+</head>
+<body>
+<h2 class="sr-only">Panduan lengkap cara kerja detektor AI, teknik humanisasi tulisan, dan etika penggunaannya</h2>
+
+<nav class="nav" aria-label="Navigasi bagian">
+  <button class="active" onclick="show('detector')">🔍 Cara Kerja Detektor</button>
+  <button onclick="show('teknik')">✍️ Teknik Humanisasi</button>
+  <button onclick="show('parafrase')">🔄 Level Parafrase</button>
+  <button onclick="show('kata')">❌ Kata Khas AI</button>
+  <button onclick="show('alat')">🛠️ Alat & Workflow</button>
+  <button onclick="show('checklist')">✅ Checklist 20 Poin</button>
+  <button onclick="show('etika')">⚖️ Panduan Etika</button>
+</nav>
+
+<!-- SECTION 1: DETEKTOR -->
+<div id="s-detector" class="section active">
+  <h2>Cara kerja detektor AI</h2>
+  <p>Setiap platform menggunakan pendekatan berbeda — memahaminya membantu kamu menulis lebih natural.</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="badge badge-blue">Berbasis perplexity</div>
+      <h3>Turnitin</h3>
+      <p>Mengukur <em>perplexity</em> (seberapa "terduga" setiap kata) dan <em>burstiness</em> (variasi panjang kalimat). Teks AI cenderung memiliki perplexity rendah — kata-kata terlalu dapat diprediksi. Turnitin juga membandingkan ke database karya ilmiah global untuk plagiasi.</p>
+      <small style="font-size:11px; color:var(--color-text-secondary);">⚠️ Akurasi ~85% | Banyak false positive pada penutur non-native</small>
+    </div>
+    <div class="card">
+      <div class="badge badge-purple">Multi-model</div>
+      <h3>GPTZero</h3>
+      <p>Menggunakan beberapa model klasifikasi sekaligus. Menampilkan skor "completely AI" vs "completely human" per paragraf — kamu bisa melihat bagian mana yang paling mencurigakan. Versi terbaru mendeteksi teks yang sudah diparafrase.</p>
+      <small style="font-size:11px; color:var(--color-text-secondary);">⚠️ Akurasi ~80% | Lebih baik di teks panjang (500+ kata)</small>
+    </div>
+    <div class="card">
+      <div class="badge badge-teal">Fingerprinting</div>
+      <h3>Copyleaks</h3>
+      <p>Menggabungkan deteksi plagiasi + AI. Mencari "fingerprint" gaya bahasa khas LLM. Mendukung 30+ bahasa termasuk Indonesia. Sering digunakan untuk cek keseluruhan dokumen sebelum submit.</p>
+      <small style="font-size:11px; color:var(--color-text-secondary);">⚠️ Akurasi ~78% | Baik untuk cek multibahasa</small>
+    </div>
+    <div class="card">
+      <div class="badge badge-amber">Paling ketat</div>
+      <h3>Originality.ai</h3>
+      <p>Dirancang khusus untuk publisher & konten web. Menggunakan model deteksi yang diperbarui secara rutin. Memberikan skor 0–100% dengan breakdown per kalimat. Dianggap paling akurat di antara keempatnya untuk konten marketing.</p>
+      <small style="font-size:11px; color:var(--color-text-secondary);">⚠️ Akurasi ~90% | Berbayar, 1¢ per 100 kata</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Yang semua detektor cari</h3>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:8px; margin-top:0.75rem;">
+      <div style="padding:8px; background:var(--color-background-secondary); border-radius:var(--border-radius-md); font-size:12px;"><strong>Perplexity rendah</strong><br><span style="color:var(--color-text-secondary);">Kata-kata terlalu dapat diprediksi</span></div>
+      <div style="padding:8px; background:var(--color-background-secondary); border-radius:var(--border-radius-md); font-size:12px;"><strong>Burstiness rendah</strong><br><span style="color:var(--color-text-secondary);">Panjang kalimat terlalu seragam</span></div>
+      <div style="padding:8px; background:var(--color-background-secondary); border-radius:var(--border-radius-md); font-size:12px;"><strong>Pola transisi khas</strong><br><span style="color:var(--color-text-secondary);">"Furthermore", "Moreover", dll</span></div>
+      <div style="padding:8px; background:var(--color-background-secondary); border-radius:var(--border-radius-md); font-size:12px;"><strong>Distribusi token</strong><br><span style="color:var(--color-text-secondary);">Pola probabilistik dari LLM</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: TEKNIK -->
+<div id="s-teknik" class="section">
+  <h2>Teknik humanisasi yang efektif</h2>
+  <p>Bukan sekadar mengganti kata — ini tentang mengubah pola pikir dan struktur penulisan.</p>
+
+  <div class="card">
+    <div class="badge badge-green">Paling efektif</div>
+    <h3>1. Variasikan panjang kalimat secara ekstrem</h3>
+    <p>AI cenderung membuat kalimat dengan panjang yang mirip. Manusia menulis pendek. Lalu menulis kalimat yang lebih panjang, lebih kompleks, penuh dengan klausa — bahkan mungkin terlalu panjang. Campur keduanya secara tidak terduga.</p>
+  </div>
+
+  <div class="card">
+    <div class="badge badge-green">Paling efektif</div>
+    <h3>2. Tambahkan ketidaksempurnaan yang natural</h3>
+    <p>Gunakan kontraksi, sisipkan opini personal, tambahkan keraguan ("saya rasa", "mungkin"), atau akui keterbatasan pengetahuan. Manusia tidak selalu yakin — AI selalu terdengar percaya diri.</p>
+  </div>
+
+  <div class="card">
+    <div class="badge badge-blue">Efektif</div>
+    <h3>3. Pecah pola transisi</h3>
+    <p>Hindari "furthermore", "moreover", "in conclusion". Ganti dengan transisi yang lebih kasual dan tidak terduga, atau hilangkan sama sekali — biarkan paragraf mengalir tanpa penanda eksplisit.</p>
+  </div>
+
+  <div class="card">
+    <div class="badge badge-blue">Efektif</div>
+    <h3>4. Masukkan referensi konkret & spesifik</h3>
+    <p>Tambahkan angka spesifik, nama tempat, tanggal, atau pengalaman yang terasa personal. AI sering memberikan pernyataan generik. "Penelitian menunjukkan" → "Studi Universitas Stanford tahun 2023 menemukan bahwa..."</p>
+  </div>
+
+  <div class="card">
+    <div class="badge badge-amber">Kontekstual</div>
+    <h3>5. Tulis ulang dari nol, bukan edit</h3>
+    <p>Cara paling kuat: baca teks AI, pahami isinya, lalu tutup dan tulis sendiri dengan kata-kata kamu. Ini menghasilkan teks yang benar-benar human karena proses berpikirnya human.</p>
+  </div>
+</div>
+
+<!-- SECTION 3: PARAFRASE -->
+<div id="s-parafrase" class="section">
+  <h2>4 level parafrase</h2>
+  <p>Dari yang paling lemah sampai yang benar-benar mengubah teks secara menyeluruh.</p>
+
+  <div class="compare-box">
+    <div class="compare-col col-ai">
+      <div class="col-label">🤖 Teks AI asli</div>
+      <p>Furthermore, it is important to note that artificial intelligence has the potential to significantly transform various sectors of the economy, leading to increased productivity and efficiency in many industries.</p>
+    </div>
+    <div class="compare-col col-human">
+      <div class="col-label">💬 Konteks Indonesia</div>
+      <p>Selain itu, perlu dicatat bahwa kecerdasan buatan berpotensi mengubah berbagai sektor ekonomi secara signifikan, sehingga meningkatkan produktivitas dan efisiensi di banyak industri.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+      <h3>Level 1 — Lemah: ganti sinonim</h3>
+      <div class="level-bar"><div class="level-dot filled"></div><div class="level-dot"></div><div class="level-dot"></div><div class="level-dot"></div></div>
+    </div>
+    <p style="margin-bottom:0.5rem; font-size:12px; color:var(--color-text-secondary);">Hanya mengganti kata per kata. Struktur tetap sama. Masih terdeteksi detektor canggih.</p>
+    <div class="compare-col col-ai" style="margin-top:0; padding:0.75rem;">
+      <p>"Moreover, it's crucial to note that AI has the ability to greatly transform diverse economic sectors, boosting productivity..."</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+      <h3>Level 2 — Sedang: ubah struktur kalimat</h3>
+      <div class="level-bar"><div class="level-dot filled"></div><div class="level-dot filled"></div><div class="level-dot"></div><div class="level-dot"></div></div>
+    </div>
+    <p style="margin-bottom:0.5rem; font-size:12px; color:var(--color-text-secondary);">Kalimat aktif ↔ pasif, ubah urutan klausa, pecah kalimat panjang.</p>
+    <div class="compare-col col-human" style="margin-top:0; padding:0.75rem; background:#F1EFE8; border-color:#B4B2A9;">
+      <p>"AI bisa mengubah ekonomi — itu sudah jelas. Yang menarik adalah bagaimana perubahan ini terjadi: produktivitas naik, efisiensi meningkat, dan banyak industri terdampak."</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+      <h3>Level 3 — Kuat: ubah sudut pandang</h3>
+      <div class="level-bar"><div class="level-dot filled"></div><div class="level-dot filled"></div><div class="level-dot filled"></div><div class="level-dot"></div></div>
+    </div>
+    <p style="margin-bottom:0.5rem; font-size:12px; color:var(--color-text-secondary);">Sampaikan ide yang sama dari perspektif berbeda, tambahkan opini atau contoh konkret.</p>
+    <div class="compare-col col-human" style="margin-top:0; padding:0.75rem;">
+      <p>"Bayangkan sebuah pabrik yang dulu butuh 200 pekerja — kini cukup 20 orang dengan bantuan AI. Inilah yang sedang terjadi di berbagai industri, dan dampaknya terhadap ekonomi masih sulit kita prediksi sepenuhnya."</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+      <h3>Level 4 — Sangat kuat: tulis ulang total</h3>
+      <div class="level-bar"><div class="level-dot filled"></div><div class="level-dot filled"></div><div class="level-dot filled"></div><div class="level-dot filled"></div></div>
+    </div>
+    <p style="margin-bottom:0.5rem; font-size:12px; color:var(--color-text-secondary);">Pahami inti pesan, lalu tulis dari nol dengan gaya, nada, dan struktur kamu sendiri.</p>
+    <div class="compare-col col-human" style="margin-top:0; padding:0.75rem;">
+      <p>"Saya ragu kita benar-benar siap. AI memang meningkatkan produktivitas — angkanya nyata, bukan hipotesis. Tapi 'transformasi ekonomi' yang sering disebut-sebut itu terasa abstrak sampai kamu melihatnya langsung di lapangan, di perusahaan yang kehilangan 40% tenaga kerjanya dalam dua tahun."</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: KATA AI -->
+<div id="s-kata" class="section">
+  <h2>Kata & frasa khas AI yang harus dihindari</h2>
+  <p>Ini adalah "penanda" yang paling sering muncul di teks yang dihasilkan LLM. Hindari atau ganti dengan alternatif yang lebih natural.</p>
+
+  <div class="card">
+    <h3>Kata transisi & penghubung AI</h3>
+    <div style="margin-top:0.75rem;">
+      <span class="ai-word">Furthermore</span><span class="ai-word">Moreover</span><span class="ai-word">Additionally</span><span class="ai-word">Nevertheless</span><span class="ai-word">Consequently</span><span class="ai-word">Selain itu</span><span class="ai-word">Lebih lanjut</span><span class="ai-word">Terlebih lagi</span><span class="ai-word">Sebagai tambahan</span><span class="ai-word">Dengan demikian</span><span class="ai-word">Oleh karena itu</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Kata sifat & intensifier berlebihan</h3>
+    <div style="margin-top:0.75rem;">
+      <span class="ai-word">significant(ly)</span><span class="ai-word">crucial</span><span class="ai-word">vital</span><span class="ai-word">paramount</span><span class="ai-word">comprehensive</span><span class="ai-word">robust</span><span class="ai-word">leverage</span><span class="ai-word">seamlessly</span><span class="ai-word">pivotal</span><span class="ai-word">sangat penting</span><span class="ai-word">sangat signifikan</span><span class="ai-word">secara komprehensif</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Frasa pembuka khas AI</h3>
+    <div style="margin-top:0.75rem;">
+      <span class="ai-word">It is important to note that...</span><span class="ai-word">It is worth mentioning that...</span><span class="ai-word">In conclusion...</span><span class="ai-word">To summarize...</span><span class="ai-word">Perlu dicatat bahwa...</span><span class="ai-word">Dapat disimpulkan bahwa...</span><span class="ai-word">Hal ini menunjukkan bahwa...</span><span class="ai-word">Pada akhirnya...</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Pola kalimat yang terlalu "rapi"</h3>
+    <div style="margin-top:0.75rem;">
+      <span class="ai-word">Not only... but also...</span><span class="ai-word">While... it is also...</span><span class="ai-word">In today's world...</span><span class="ai-word">In the realm of...</span><span class="ai-word">Di era modern ini...</span><span class="ai-word">Di tengah perkembangan zaman...</span><span class="ai-word">Seiring berjalannya waktu...</span>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:#97C459; background:#EAF3DE;">
+    <h3 style="color:#27500A;">✓ Alternatif yang lebih natural</h3>
+    <p style="color:#3B6D11;">Ganti dengan kata sehari-hari: "tapi" bukan "namun", "soal" bukan "mengenai", "ini bikin" bukan "hal ini menyebabkan". Gunakan kalimat fragmentasi. Mulai dengan "Saya". Gunakan em-dash — seperti ini — untuk jeda informal.</p>
+  </div>
+</div>
+
+<!-- SECTION 5: ALAT & WORKFLOW -->
+<div id="s-alat" class="section">
+  <h2>Alat bantu & workflow lengkap</h2>
+
+  <div class="card">
+    <h3>Alat bantu gratis</h3>
+    <div class="tool-row">
+      <div class="tool-icon" style="background:#E6F1FB; color:#185FA5; font-size:14px; font-weight:600;">GZ</div>
+      <div class="tool-info"><strong>GPTZero (gptzero.me)</strong><br><small>Cek AI score per paragraf — gratis sampai 5.000 kata/bulan. Gunakan sebagai baseline cek pertama.</small></div>
+      <span class="badge badge-green">Gratis</span>
+    </div>
+    <div class="tool-row">
+      <div class="tool-icon" style="background:#F1EFE8; color:#5F5E5A; font-size:14px; font-weight:600;">ZG</div>
+      <div class="tool-info"><strong>ZeroGPT (zerogpt.com)</strong><br><small>Alternatif GPTZero, interface lebih simpel. Gratis tanpa batas untuk teks pendek.</small></div>
+      <span class="badge badge-green">Gratis</span>
+    </div>
+    <div class="tool-row">
+      <div class="tool-icon" style="background:#EEEDFE; color:#534AB7; font-size:14px; font-weight:600;">QT</div>
+      <div class="tool-info"><strong>QuillBot Paraphraser</strong><br><small>Parafrase otomatis level 1–2. Gunakan sebagai titik awal, bukan hasil akhir. Gratis 125 kata/parafrase.</small></div>
+      <span class="badge badge-green">Gratis</span>
+    </div>
+    <div class="tool-row">
+      <div class="tool-icon" style="background:#E1F5EE; color:#0F6E56; font-size:14px; font-weight:600;">HW</div>
+      <div class="tool-info"><strong>Hemingway Editor</strong><br><small>Bantu sederhanakan kalimat kompleks. Identifikasi kalimat terlalu panjang atau pasif. Gratis di web.</small></div>
+      <span class="badge badge-green">Gratis</span>
+    </div>
+    <div class="tool-row">
+      <div class="tool-icon" style="background:#FAEEDA; color:#854F0B; font-size:14px; font-weight:600;">CL</div>
+      <div class="tool-info"><strong>Copyleaks (copyleaks.com)</strong><br><small>Cek plagiasi + AI sekaligus. Gratis 10 halaman/bulan untuk mahasiswa.</small></div>
+      <span class="badge badge-amber">Freemium</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Workflow 6 langkah</h3>
+    <div style="margin-top:0.75rem;">
+      <div class="workflow-step"><div class="step-num">1</div><div class="step-content"><strong>Generate dengan AI</strong><span> — Buat draf awal dengan prompt yang spesifik dan terarah</span></div></div>
+      <div class="workflow-step"><div class="step-num">2</div><div class="step-content"><strong>Cek detektor pertama</strong><span> — Paste ke GPTZero, tandai bagian merah/kuning</span></div></div>
+      <div class="workflow-step"><div class="step-num">3</div><div class="step-content"><strong>Edit manual level 3–4</strong><span> — Tulis ulang bagian yang terdeteksi, tambahkan contoh personal</span></div></div>
+      <div class="workflow-step"><div class="step-num">4</div><div class="step-content"><strong>Cek readability</strong><span> — Paste ke Hemingway, perbaiki kalimat panjang & pasif</span></div></div>
+      <div class="workflow-step"><div class="step-num">5</div><div class="step-content"><strong>Cek detektor kedua</strong><span> — Gunakan ZeroGPT atau Copyleaks untuk verifikasi</span></div></div>
+      <div class="workflow-step"><div class="step-num">6</div><div class="step-content"><strong>Final review manual</strong><span> — Baca keras-keras, pastikan terdengar seperti kamu</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: CHECKLIST -->
+<div id="s-checklist" class="section">
+  <h2>Checklist 20 poin sebelum submit</h2>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div class="progress-label"><span id="progress-text">0 dari 20 selesai</span></div>
+
+  <div class="card">
+    <h3 style="margin-bottom:0.75rem; font-size:13px; color:var(--color-text-secondary);">Struktur & gaya</h3>
+    <ul class="checklist" id="checklist">
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Panjang kalimat bervariasi — ada yang sangat pendek, ada yang panjang</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Tidak ada dua kalimat berturut-turut yang strukturnya identik</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Kata transisi AI sudah diganti atau dihilangkan</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Tidak ada frasa "perlu dicatat bahwa" atau variasinya</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Ada minimal satu referensi konkret (angka, nama, tanggal)</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom:0.75rem; font-size:13px; color:var(--color-text-secondary);">Nada & suara</h3>
+    <ul class="checklist" id="checklist2">
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Ada ekspresi ketidakpastian atau keraguan di setidaknya satu tempat</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Nada konsisten dengan tulisanmu sebelumnya / gaya pribadimu</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Tidak ada klaim yang terasa terlalu percaya diri atau terlalu sempurna</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Sudah kamu baca keras-keras dan terdengar seperti kamu berbicara</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Tidak ada kata sifat berlebihan (crucial, significant, comprehensive, dll)</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom:0.75rem; font-size:13px; color:var(--color-text-secondary);">Konten & akurasi</h3>
+    <ul class="checklist" id="checklist3">
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Semua fakta sudah diverifikasi dari sumber primer</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Tidak ada "hallucination" — nama, angka, atau kutipan yang tidak ada</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Argumen mengalir logis, bukan hanya daftar poin tanpa koneksi</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Contoh atau ilustrasi yang digunakan relevan dan spesifik</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Tidak ada kontradiksi internal antar paragraf</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom:0.75rem; font-size:13px; color:var(--color-text-secondary);">Teknis & pengecekan akhir</h3>
+    <ul class="checklist" id="checklist4">
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Sudah dicek di GPTZero / ZeroGPT — skor AI di bawah 20%</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Sudah dicek plagiasi — tidak ada kesamaan yang tidak disengaja</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Ejaan dan tanda baca sudah dicek secara manual</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Sudah ada jeda waktu antara menulis dan mengedit (minimal 1 jam)</span></li>
+      <li onclick="toggle(this)"><div class="check-box"><i class="ti ti-check" style="font-size:11px; display:none;"></i></div><span class="check-text">Kamu bisa menjelaskan setiap kalimat yang kamu tulis jika ditanya</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 7: ETIKA -->
+<div id="s-etika" class="section">
+  <h2>Panduan etika</h2>
+  <p>Penggunaan AI yang bertanggung jawab bukan soal menghindari deteksi — ini soal integritas dan nilai nyata yang kamu berikan.</p>
+
+  <div class="ethics-block">
+    <h3>✓ Penggunaan yang etis & direkomendasikan</h3>
+    <p>Gunakan AI sebagai asisten berpikir: brainstorming, outline awal, atau mengatasi writer's block. Ide dan argumen utama tetap harus berasal dari kamu. Verifikasi semua fakta secara mandiri. Tambahkan perspektif, pengalaman, dan analisis yang genuinely milikmu.</p>
+  </div>
+
+  <div class="ethics-block warn">
+    <h3>⚠️ Area abu-abu — pertimbangkan konteksnya</h3>
+    <p>Menggunakan AI untuk first draft akademik berbeda-beda tergantung kebijakan institusi. Selalu cek panduan dosen atau institusimu. Dalam konteks profesional, banyak pekerjaan kini membolehkan AI-assisted writing asalkan hasilnya akurat dan berkualitas.</p>
+  </div>
+
+  <div class="ethics-block danger">
+    <h3>✗ Praktik yang bermasalah secara etis</h3>
+    <p>Submit teks AI mentah sebagai karya sendiri di konteks akademik yang melarangnya. Tidak memverifikasi fakta dari output AI. Mengklaim authorship penuh tanpa kontribusi nyata. Menggunakan AI untuk bypass batas kemampuan yang sebenarnya perlu dikembangkan.</p>
+  </div>
+
+  <div class="card" style="border-color:#9FE1CB; background:#E1F5EE;">
+    <h3 style="color:#085041;">Prinsip utama: nilai nyata di balik tulisan</h3>
+    <p style="color:#0F6E56;">Pertanyaan terpenting bukan "apakah ini terdeteksi AI?" tapi "apakah tulisan ini benar-benar mencerminkan pemikiran dan pemahamanku?" Jika jawabannya ya, kamu sudah di jalur yang benar — terlepas dari alat apa yang kamu gunakan dalam prosesnya.</p>
+  </div>
+
+  <div class="card">
+    <h3>Transparansi yang disarankan</h3>
+    <p>Di banyak konteks profesional dan akademik, menyebut "ditulis dengan bantuan AI, diedit dan diverifikasi secara manual oleh penulis" justru menunjukkan literasi digital yang tinggi. Tren kebijakan saat ini bergerak ke arah disclosure, bukan larangan total.</p>
+  </div>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+let totalChecked = 0;
+function toggle(li) {
+  const box = li.querySelector('.check-box');
+  const text = li.querySelector('.check-text');
+  const icon = box.querySelector('i');
+  const isChecked = box.classList.toggle('checked');
+  text.classList.toggle('checked', isChecked);
+  icon.style.display = isChecked ? 'block' : 'none';
+  totalChecked = document.querySelectorAll('.check-box.checked').length;
+  const pct = Math.round((totalChecked / 20) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = totalChecked + ' dari 20 selesai';
+}
+</script>
+</body>
+</html>
