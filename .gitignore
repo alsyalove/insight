@@ -1,0 +1,3 @@
+vault/
+.cfignore
+node_modules/
