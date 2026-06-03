@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capture Patterns - Insight Forge</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-badge">◉ Metodologi</div>
+    <h1>Capture<br><em>Patterns</em></h1>
+    <p class="hero-desc">Pola standar untuk menangkap pemikiran mentah, log sistem, dan arsitektur data sebelum diekspor ke dalam Vault.</p>
+  </div>
+
+  <nav class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('konsep')" data-tab="konsep">
+      <span class="tab-dot" style="background:#1a6b5a"></span>Konsep Dasar
+    </button>
+    <button class="tab-btn" onclick="switchTab('format')" data-tab="format">
+      <span class="tab-dot" style="background:#c07a1a"></span>Format Markdown
+    </button>
+    <button class="tab-btn" onclick="switchTab('alur')" data-tab="alur">
+      <span class="tab-dot" style="background:#5a3ab8"></span>Alur Eksekusi
+    </button>
+  </nav>
+
+  <div class="content-area">
+    
+    <div id="tab-konsep" class="tab-panel active">
+      <p class="intro-text">"Penangkapan data yang baik memisahkan observasi dari interpretasi. Biarkan data mentah masuk, interpretasi menyusul."</p>
+      
+      <div class="section-label">Prinsip Penangkapan</div>
+      <div class="feature-grid">
+        <div class="feature-card teal">
+          <h3>Frictionless Entry</h3>
+          <p>Proses mencatat harus secepat kilat. Jangan memikirkan hierarki folder atau struktur saat ide baru muncul.</p>
+        </div>
+        <div class="feature-card amber">
+          <h3>Epistemic Separation</h3>
+          <p>Pisahkan antara fakta (log, data mentah, referensi) dengan asumsi atau pemikiran pribadi.</p>
+        </div>
+      </div>
+      
+      <div class="info-box">
+        <div class="info-label">Saran Implementasi</div>
+        <p>Gunakan satu inbox terpusat (bisa berupa direktori sementara) untuk semua tangkapan awal sebelum dikategorisasi ke dalam arsitektur sistem atau folder final.</p>
+      </div>
+    </div>
+
+    <div id="tab-format" class="tab-panel">
+      <div class="section-label">Standarisasi Metadata (Frontmatter)</div>
+      <p style="font-size: 14px; margin-bottom: 1rem; color: var(--ink2);">Gunakan header YAML berikut untuk setiap catatan baru agar kompatibel dengan sistem pengelolaan pengetahuan yang berbasis Markdown.</p>
+      
+      <div class="prompt-block">
+        <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+        <p>---
+id: <span class="placeholder">YYYYMMDDHHMMSS</span>
+title: <span class="placeholder">"Judul Singkat"</span>
+aliases: []
+tags: [<span class="placeholder">raw, idea, arsitektur</span>]
+date: <span class="placeholder">YYYY-MM-DD</span>
+status: <span class="highlight">seed</span>
+---
+
+# Observasi
+- 
+
+# Konteks / Logika
+- </p>
+      </div>
+    </div>
+
+    <div id="tab-alur" class="tab-panel">
+      <div class="section-label">Prosedur Konversi Data</div>
+      
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Raw Capture (Input Mentah)</h4>
+            <p>Tangkap log terminal, output model AI, atau coretan pemikiran tanpa filter pemformatan.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Pembersihan Noise</h4>
+            <p>Hapus kunci JSON yang tidak relevan (seperti <code>reasoning_content</code>) jika mengekspor riwayat percakapan. Sisakan hanya data esensial.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Injeksi Metadata</h4>
+            <p>Tambahkan YAML Frontmatter dan simpan dengan ekstensi <code>.md</code> untuk diarsip ke dalam Vault lokal.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="../assets/forge.js"></script>
+</body>
+</html>
