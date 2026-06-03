@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Judul Panduan Baru - Insight Forge</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-badge">◉ Kategori Panduan (Misal: Tutorial)</div>
+    <h1>NotebookLM
+sebagai Asisten Riset<br><em>Panduan</em></h1>
+    <p class="hero-desc">NotebookLM bukan sekadar chatbot — ini adalah second brain yang membaca semua sumbermu sebelum menjawab.</p>
+  </div>
+
+<!-- TAB: MULAI DI SINI -->
+<div class="content-area">
+<div id="tab-start" class="tab-panel active">
+
+  <p class="intro-text">"NotebookLM bukan sekadar chatbot — ini adalah second brain yang membaca semua sumbermu sebelum menjawab."</p>
+
+  <div class="section-label">Apa yang Bisa NLM Lakukan</div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <span class="stat-num">50+</span>
+      <span class="stat-label">Sumber per Notebook</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">25 MB</span>
+      <span class="stat-label">Maks. per File</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">500K</span>
+      <span class="stat-label">Token Context Window</span>
+    </div>
+  </div>
+
+  <div class="section-label">Keunggulan vs ChatGPT Biasa</div>
+
+  <div class="feature-grid">
+    <div class="feature-card amber">
+      <h3>Grounded on Your Sources</h3>
+      <p>Jawaban NLM selalu bersumber dari dokumen yang kamu upload — bukan halusinasi dari internet.</p>
+    </div>
+    <div class="feature-card teal">
+      <h3>Kutipan Otomatis</h3>
+      <p>Setiap jawaban disertai referensi ke halaman spesifik di jurnalmu. Langsung bisa dicek.</p>
+    </div>
+    <div class="feature-card coral">
+      <h3>Audio Overview</h3>
+      <p>Ubah seluruh koleksi literaturmu jadi podcast dua pembicara yang mengalir natural.</p>
+    </div>
+    <div class="feature-card purple">
+      <h3>Mind Map & Outline</h3>
+      <p>Generate struktur topik otomatis dari semua sumbermu dengan satu klik.</p>
+    </div>
+  </div>
+
+  <div class="section-label">Workflow Riset Ideal</div>
+
+  <div class="workflow-row">
+    <div class="workflow-step">
+      <div class="workflow-circle" style="background:#f5e6c8; color:#c07a1a;">01</div>
+      <div class="workflow-label">Upload<br>Jurnal PDF</div>
+    </div>
+    <div class="workflow-arrow">→</div>
+    <div class="workflow-step">
+      <div class="workflow-circle" style="background:#d4ede8; color:#1a6b5a;">02</div>
+      <div class="workflow-label">Buat<br>Notebook Guide</div>
+    </div>
+    <div class="workflow-arrow">→</div>
+    <div class="workflow-step">
+      <div class="workflow-circle" style="background:#e8e0f5; color:#5a3ab8;">03</div>
+      <div class="workflow-label">Ekstrak<br>& Analisis</div>
+    </div>
+    <div class="workflow-arrow">→</div>
+    <div class="workflow-step">
+      <div class="workflow-circle" style="background:#ddf0d4; color:#2d6b1a;">04</div>
+      <div class="workflow-label">Audio<br>Overview</div>
+    </div>
+    <div class="workflow-arrow">→</div>
+    <div class="workflow-step">
+      <div class="workflow-circle" style="background:#f5ddd8; color:#b84a2a;">05</div>
+      <div class="workflow-label">Tulis<br>Output</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 Tips Pemula</div>
+    <p>Buat <strong>satu notebook per topik/proyek</strong>, bukan satu notebook untuk semua. NLM bekerja lebih tajam kalau konteksnya terfokus. Topik skripsi, jurnal club, dan side project → masing-masing dapat notebook sendiri.</p>
+  </div>
+
+</div>
+
+<!-- TAB: SETUP NOTEBOOK -->
+<div id="tab-setup" class="tab-panel">
+
+  <div class="section-label">Setup Notebook sebagai Asisten Riset Personal</div>
+
+  <ul class="step-list">
+    <li class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Buka notebook.google.com → New Notebook</h4>
+        <p>Beri nama yang spesifik, misalnya "Riset Burnout Tenaga Kesehatan 2024" bukan hanya "Jurnal".</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Upload sumber (PDF, URL, Google Docs, YouTube)</h4>
+        <p>Klik Add Source. Bisa batch upload beberapa PDF sekaligus. NLM support hingga 50 sumber per notebook.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Orientasikan NLM dengan prompt pembuka</h4>
+        <p>Sebelum mulai tanya-jawab, kasih konteks dulu siapa kamu dan apa yang ingin dicapai.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Simpan respons penting ke Notes panel</h4>
+        <p>Klik ikon "pin" pada respons bagus. Notes tersimpan di sidebar dan bisa diexport ke Google Docs.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Generate Notebook Guide</h4>
+        <p>Klik tombol "Notebook Guide" di panel kiri untuk auto-summary, FAQ, dan mind map dari semua sumber.</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2 class="section-title">Prompt Orientasi Asisten Riset</h2>
+
+  <div class="prompt-set">
+    <h3>Prompt Pembuka (Konteks Peneliti)</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Saya adalah mahasiswa [S2/S3] bidang [nama bidang] yang sedang mengerjakan [topik riset]. Saya telah mengupload [N] jurnal ke notebook ini.
+
+Tolong jadilah asisten riset saya yang:
+1. Menjawab berdasarkan HANYA sumber yang diupload
+2. Selalu menyebutkan nama jurnal dan halaman spesifik saat mengutip
+3. Memberitahu saya ketika suatu pertanyaan tidak terjawab oleh sumber yang ada
+4. Menggunakan bahasa Indonesia yang akademis namun mudah dipahami
+
+Mulai dengan membuat ringkasan 3 kalimat dari keseluruhan koleksi jurnal ini.</span></p>
+    </div>
+  </div>
+
+  <div class="prompt-set">
+    <h3>Prompt Pemetaan Awal Topik</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Berdasarkan semua sumber yang ada, buat PETA KONSEP yang mencakup:
+
+→ Tema utama yang muncul di 3+ jurnal
+→ Tema minor yang hanya muncul di 1-2 jurnal  
+→ Perdebatan atau kontradiksi antar sumber
+→ Gap penelitian yang belum dibahas
+
+Format sebagai daftar terstruktur dengan indikasi frekuensi kemunculan.</span></p>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">⚠ Perhatian</div>
+    <p>NLM tidak menyimpan percakapan antar sesi. Jika ingin melanjutkan analisis, simpan dulu respons penting ke Notes sebelum menutup browser.</p>
+  </div>
+
+</div>
+
+<!-- TAB: EKSTRAK 20 JURNAL -->
+<div id="tab-extract" class="tab-panel">
+
+  <div class="section-label">Strategi Ekstraksi Massal 20 Jurnal</div>
+
+  <p class="intro-text">"Jangan tanya satu per satu. Tanya lintas jurnal, temukan pola."</p>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 Prinsip Ekstraksi Efisien</div>
+    <p>NLM terbaik dipakai untuk pertanyaan lintas-sumber, bukan per-jurnal. Pertanyaan "Apa kata semua jurnal tentang X?" jauh lebih powerful daripada membaca satu per satu.</p>
+  </div>
+
+  <div class="section-label">Template Ekstraksi Cepat</div>
+
+  <div class="use-case-stack">
+
+    <div class="use-case-card">
+      <div class="use-case-header" onclick="toggleCase(this)">
+        <div class="use-case-icon" style="background:#f5e6c8;">📊</div>
+        <div class="use-case-title">Ekstraksi Temuan Utama (Semua Jurnal)</div>
+        <div class="use-case-arrow">›</div>
+      </div>
+      <div class="use-case-body">
+        <p>Gunakan prompt ini untuk mendapat ringkasan lintas jurnal dalam format tabel.</p>
+        <div class="prompt-block">
+          <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+          <p><span class="highlight">Buat TABEL SINTESIS dari semua jurnal dengan kolom:
+| Jurnal (Penulis, Tahun) | Temuan Utama | Metodologi | Sampel/Konteks | Keterbatasan |
+
+Urutkan berdasarkan relevansi dengan topik <span class="placeholder">[tulis topikmu]</span>.
+Jika ada jurnal yang tidak memiliki info pada kolom tertentu, tulis "Tidak disebutkan".</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="use-case-card">
+      <div class="use-case-header" onclick="toggleCase(this)">
+        <div class="use-case-icon" style="background:#d4ede8;">🔍</div>
+        <div class="use-case-title">Mencari Konsensus dan Kontradiksi</div>
+        <div class="use-case-arrow">›</div>
+      </div>
+      <div class="use-case-body">
+        <p>Identifikasi di mana para peneliti setuju dan di mana mereka berbeda pendapat.</p>
+        <div class="prompt-block">
+          <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+          <p><span class="highlight">Analisis semua jurnal untuk menemukan:
+
+KONSENSUS: Temuan yang disepakati oleh 3 jurnal atau lebih (sebutkan jurnal-jurnalnya)
+
+KONTRADIKSI: Klaim yang saling bertentangan antar jurnal (jelaskan perbedaannya)
+
+NUANSA: Temuan yang mirip tapi dengan catatan berbeda
+
+Gunakan kutipan langsung (beserta nama jurnal) untuk setiap poin.</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="use-case-card">
+      <div class="use-case-header" onclick="toggleCase(this)">
+        <div class="use-case-icon" style="background:#e8e0f5;">📝</div>
+        <div class="use-case-title">Ekstraksi untuk Literature Review</div>
+        <div class="use-case-arrow">›</div>
+      </div>
+      <div class="use-case-body">
+        <p>Langsung dapatkan paragraf siap pakai untuk bagian tinjauan pustaka.</p>
+        <div class="prompt-block">
+          <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+          <p><span class="highlight">Tulis paragraf literature review akademis tentang <span class="placeholder">[subtopik]</span> berdasarkan sumber yang ada.
+
+Syarat:
+- Gunakan gaya penulisan akademis Bahasa Indonesia
+- Integrasikan minimal 5 jurnal secara organis (bukan satu-satu)
+- Tunjukkan perkembangan pemikiran dari waktu ke waktu
+- Akhiri dengan kalimat yang menunjukkan gap penelitian
+- Format sitasi: (Penulis, Tahun)</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="use-case-card">
+      <div class="use-case-header" onclick="toggleCase(this)">
+        <div class="use-case-icon" style="background:#ddf0d4;">📈</div>
+        <div class="use-case-title">Pemetaan Metodologi</div>
+        <div class="use-case-arrow">›</div>
+      </div>
+      <div class="use-case-body">
+        <p>Pahami lanskap metodologis dari seluruh koleksi jurnalmu.</p>
+        <div class="prompt-block">
+          <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+          <p><span class="highlight">Buat PETA METODOLOGI dari semua jurnal:
+
+1. Metode apa yang paling sering digunakan? (hitung frekuensi)
+2. Apakah ada tren metodologi berdasarkan tahun publikasi?
+3. Jurnal mana yang menggunakan mixed-methods?
+4. Ukuran sampel: range minimum-maksimum-rata-rata
+5. Rekomendasi: metode apa yang cocok untuk penelitian lanjutan?</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="use-case-card">
+      <div class="use-case-header" onclick="toggleCase(this)">
+        <div class="use-case-icon" style="background:#f5ddd8;">🎯</div>
+        <div class="use-case-title">Identifikasi Gap Penelitian</div>
+        <div class="use-case-arrow">›</div>
+      </div>
+      <div class="use-case-body">
+        <p>Temukan peluang penelitian yang belum dijamah dari semua sumber.</p>
+        <div class="prompt-block">
+          <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+          <p><span class="highlight">Dari semua jurnal yang ada, identifikasi RESEARCH GAPS dengan cara:
+
+1. Apa yang para penulis sendiri akui sebagai keterbatasan?
+2. Populasi/konteks apa yang belum diteliti?
+3. Variabel apa yang disarankan untuk penelitian masa depan?
+4. Pertanyaan apa yang muncul tapi tidak terjawab?
+
+Prioritaskan berdasarkan: (a) seberapa sering disebutkan, (b) relevansi dengan <span class="placeholder">[konteks risetmu]</span></span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="info-box">
+    <div class="info-label">ℹ Teknik Lanjutan: Chunking</div>
+    <p>Jika 20 jurnal terasa terlalu besar untuk satu pertanyaan, bagi ke dalam cluster tema: "Tanya dulu tentang jurnal-jurnal yang membahas intervensi klinis" → setelah dapat jawaban → "Sekarang bandingkan dengan jurnal-jurnal yang fokus pada faktor lingkungan."</p>
+  </div>
+
+</div>
+
+<!-- TAB: PROMPT BANK -->
+<div id="tab-prompts" class="tab-panel">
+
+  <div class="section-label">Koleksi Prompt Siap Pakai</div>
+
+  <div class="tag-row">
+    <span class="tag amber">Analisis</span>
+    <span class="tag teal">Sintesis</span>
+    <span class="tag purple">Menulis</span>
+    <span class="tag coral">Kritis</span>
+    <span class="tag green">Output</span>
+  </div>
+
+  <h2 class="section-title">Analisis Mendalam</h2>
+
+  <div class="prompt-set">
+    <h3>Analisis PICO (untuk riset kesehatan/sosial)</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Analisis semua jurnal menggunakan framework PICO:
+
+P (Population): Populasi yang diteliti di setiap jurnal
+I (Intervention): Intervensi atau variabel independen
+C (Comparison): Kelompok kontrol atau perbandingan
+O (Outcome): Hasil yang diukur
+
+Buat dalam format tabel. Tandai sel dengan ★ jika informasinya sangat jelas/eksplisit di jurnal.</span></p>
+    </div>
+  </div>
+
+  <div class="prompt-set">
+    <h3>Analisis Kualitas Penelitian</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Evaluasi kualitas setiap jurnal berdasarkan:
+
+□ Apakah pertanyaan penelitian jelas?
+□ Apakah metodologi sesuai dengan tujuan penelitian?
+□ Apakah sampling dijelaskan dan representatif?
+□ Apakah ada potensi bias yang diakui?
+□ Apakah kesimpulan didukung data?
+
+Beri rating: Tinggi / Sedang / Perlu Diverifikasi untuk setiap jurnal.</span></p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="section-title">Sintesis & Penulisan</h2>
+
+  <div class="prompt-set">
+    <h3>Kerangka Argumen Tesis</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Bantu saya membangun argumen untuk thesis statement berikut:
+"<span class="placeholder">[tulis thesis statement atau argumen utamamu]</span>"
+
+Dari semua jurnal yang ada:
+1. Jurnal mana yang MENDUKUNG argumen ini? (dengan kutipan)
+2. Jurnal mana yang MENENTANG atau memperumit argumen ini?
+3. Bagaimana saya bisa memperkuat argumen sambil mengakui counter-argument?
+4. Evidence apa yang masih kurang dan perlu dicari?</span></p>
+    </div>
+  </div>
+
+  <div class="prompt-set">
+    <h3>Membuat Definisi Operasional</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Kompilasikan bagaimana konsep "<span class="placeholder">[nama konsep]</span>" didefinisikan di seluruh jurnal:
+
+- Definisi yang paling sering digunakan
+- Variasi definisi yang ada
+- Dimensi/aspek yang selalu muncul dalam setiap definisi
+- Definisi mana yang paling cocok untuk konteks riset saya tentang <span class="placeholder">[konteks]</span>
+
+Rekomendasikan definisi operasional yang akan saya gunakan.</span></p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="section-title">Output Siap Pakai</h2>
+
+  <div class="prompt-set">
+    <h3>Draft Abstrak Penelitian</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Berdasarkan sumber-sumber ini sebagai latar belakang, bantu saya draft abstrak penelitian dengan struktur:
+
+Konteks: [1-2 kalimat mengapa topik ini penting]
+Gap: [1 kalimat gap yang ada di literatur]
+Tujuan: [1 kalimat tujuan penelitian saya]
+Metode: [1-2 kalimat metode yang direncanakan]
+Kontribusi: [1 kalimat kontribusi potensial]
+
+Topik penelitian saya: <span class="placeholder">[deskripsi singkat penelitianmu]</span>
+Total kata: maksimal 250 kata, Bahasa Indonesia akademis.</span></p>
+    </div>
+  </div>
+
+  <div class="prompt-set">
+    <h3>Buat Daftar Pertanyaan Wawancara</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Dari temuan-temuan di jurnal ini, bantu saya buat panduan wawancara semi-terstruktur untuk meneliti <span class="placeholder">[topik]</span> pada <span class="placeholder">[subjek penelitian]</span>.
+
+Buat 3 kategori pertanyaan:
+1. Pertanyaan eksplorasi (membuka cerita)
+2. Pertanyaan pendalaman (berdasarkan tema dari jurnal)
+3. Pertanyaan probing (untuk mengungkap nuansa)
+
+Setiap kategori 4-5 pertanyaan. Hindari pertanyaan ya/tidak.</span></p>
+    </div>
+  </div>
+
+  <div class="prompt-set">
+    <h3>Generasi Pertanyaan Sidang</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Berperan sebagai penguji yang kritis. Berdasarkan literature yang ada di notebook ini dan penelitian saya tentang <span class="placeholder">[topik]</span>, buat 10 pertanyaan sidang yang mungkin diajukan penguji.
+
+Fokus pada:
+- Kelemahan metodologi yang umum
+- Alternatif interpretasi temuan
+- Relevansi dengan gap penelitian
+- Generalisabilitas hasil
+
+Untuk setiap pertanyaan, berikan juga hints untuk jawaban yang baik.</span></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB: AUDIO OVERVIEW -->
+<div id="tab-audio" class="tab-panel">
+
+  <div class="section-label">Fitur Audio Overview</div>
+
+  <div class="audio-visual">
+    <div class="audio-waveform">
+      <div class="audio-bar" style="height:60%;animation-delay:0s"></div>
+      <div class="audio-bar" style="height:100%;animation-delay:0.15s"></div>
+      <div class="audio-bar" style="height:45%;animation-delay:0.3s"></div>
+      <div class="audio-bar" style="height:80%;animation-delay:0.45s"></div>
+      <div class="audio-bar" style="height:65%;animation-delay:0.6s"></div>
+      <div class="audio-bar" style="height:90%;animation-delay:0.75s"></div>
+      <div class="audio-bar" style="height:50%;animation-delay:0.9s"></div>
+      <div class="audio-bar" style="height:75%;animation-delay:1.05s"></div>
+    </div>
+    <div class="audio-info">
+      <h4>"Tumpukan jurnal jadi podcast yang bisa kamu dengerin sambil ngopi"</h4>
+      <p>~8-15 menit · dua AI host · bahasa natural · berbasis sumbermu</p>
+    </div>
+  </div>
+
+  <div class="section-label">Cara Menggunakan Audio Overview</div>
+
+  <ul class="step-list">
+    <li class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Pilih sumber yang ingin dimasukkan</h4>
+        <p>Di panel sumber (kiri), centang semua jurnal yang ingin dijadikan podcast. Bisa semua atau pilihan tertentu saja.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Klik "Generate" di panel Audio Overview</h4>
+        <p>Terletak di panel kanan bawah. Proses biasanya 2-4 menit tergantung jumlah sumber.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Customize sebelum generate (opsional)</h4>
+        <p>Klik ikon pensil sebelum generate untuk memberikan instruksi khusus kepada dua host AI tersebut.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Download atau dengarkan langsung</h4>
+        <p>File audio berformat .wav bisa didownload dan diputar di mana saja. Cocok untuk commute atau saat ngopi.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Interupsi dan tanya saat mendengarkan</h4>
+        <p>Fitur terbaru: kamu bisa memotong audio dan bertanya langsung ke host. Mereka akan menjawab dalam konteks diskusi.</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2 class="section-title">Customization Prompt untuk Audio Overview</h2>
+
+  <div class="prompt-set">
+    <h3>Instruksi untuk Podcast Akademis Serius</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Tolong buat audio overview dengan gaya podcast akademis serius seperti acara NPR atau BBC. 
+
+Fokus pada:
+- Penjelasan mendalam tentang temuan penelitian yang paling signifikan
+- Diskusi tentang implikasi praktis bagi <span class="placeholder">[audiens target]</span>
+- Jangan skip kontradiksi antar penelitian — bahas dengan seimbang
+- Gunakan analogi yang mudah dipahami untuk konsep teknis
+
+Durasi: sekitar 10-12 menit</span></p>
+    </div>
+  </div>
+
+  <div class="prompt-set">
+    <h3>Instruksi untuk Podcast Santai & Engaging</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Buat audio overview dengan gaya ngobrol santai tapi tetap informatif.
+
+Yang saya inginkan:
+- Mulai dengan hook yang menarik (mengapa topik ini relevan hari ini)
+- Gunakan contoh sehari-hari untuk menjelaskan konsep penelitian
+- Host boleh bereaksi secara natural ("wah, ini menarik karena...")
+- Akhiri dengan 3 takeaway paling praktis yang bisa diterapkan
+- Nada: seperti dua teman yang baru baca jurnal menarik bareng</span></p>
+    </div>
+  </div>
+
+  <div class="prompt-set">
+    <h3>Instruksi untuk Persiapan Presentasi</h3>
+    <div class="prompt-block">
+      <button class="copy-btn" onclick="copyPrompt(this)">salin</button>
+      <p><span class="highlight">Saya akan presentasi tentang <span class="placeholder">[topik]</span> kepada <span class="placeholder">[audiens: mahasiswa/dosen/praktisi]</span>.
+
+Buat audio overview yang:
+- Membahas poin-poin yang paling mungkin jadi pertanyaan audiens
+- Highlight temuan yang paling surprising atau counterintuitive
+- Diskusikan keterbatasan penelitian secara jujur
+- Berikan framing yang cocok untuk audiens non-spesialis
+Bantu saya "mendengar" materi sebelum harus menjelaskannya.</span></p>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 Hack Audio Overview</div>
+    <p>Setelah audio selesai, langsung buka chat dan tanya: "Tadi di podcast disebutkan tentang [X]. Bisa kasih lebih banyak detail dan kutipan dari sumbernya?" — NLM akan ekspansi topik tersebut dengan referensi spesifik.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">⚠ Keterbatasan Audio Overview</div>
+    <p>Audio Overview saat ini hanya tersedia dalam Bahasa Inggris. Untuk konten Bahasa Indonesia, gunakan fitur chat biasa. Jika sumber kamu berbahasa Indonesia, hasil audio mungkin kurang akurat dalam menangkap nuansa.</p>
+  </div>
+
+  <div class="info-box">
+    <div class="info-label">ℹ Use Case Terbaik Audio Overview</div>
+    <p>Gunakan Audio Overview untuk onboarding cepat ke topik baru, review materi sebelum presentasi atau sidang, dan "mendengar" perspektif besar sebelum masuk ke analisis detail. Bukan pengganti membaca, tapi komplemen yang powerful.</p>
+  </div>
+
+  <script src="../assets/forge.js"></script>
+</body>
+</html>
