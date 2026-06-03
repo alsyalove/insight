@@ -1,0 +1,8 @@
+name = "insight-forge"
+compatibility_date = "2024-05-01"
+
+# Arahkan Cloudflare ke script pengaman yang baru saja dibuat
+main = "src/index.js"
+
+# Beritahu Cloudflare bahwa seluruh folder ini berisi file HTML/CSS statis
+assets = { directory = "./", binding = "ASSETS" }
